@@ -21,11 +21,19 @@ def getStudentsData():
     students_names = np.array(st_names);
     return students_names,students_marks;
 
+def averageGrade(students_marks):
+    marks_avg = [];
+    for i in students_marks:
+        average = np.mean(i);
+        marks_avg.append(float(average))
+    return marks_avg;
+
 
 if __name__ == '__main__':
     print('-----------------------')
     print('  --- Report card ---')
     print('-----------------------')
     students_names,students_marks= getStudentsData();  
-    print(students_names,students_marks)
+    marks_avg  = averateGrade(students_marks);
+    print(marks_avg)
     
