@@ -28,12 +28,17 @@ def averageGrade(students_marks):
         marks_avg.append(float(average))
     return marks_avg;
 
+def classAverage(students_marks):
+    class_avg = np.sum(students_marks) / students_marks.size;
+    return class_avg;
 
 if __name__ == '__main__':
     print('-----------------------')
     print('  --- Report card ---')
     print('-----------------------')
     students_names,students_marks= getStudentsData();  
-    marks_avg  = averateGrade(students_marks);
+    marks_avg  = averageGrade(students_marks);
     print(marks_avg)
+    class_avg = classAverage(students_marks)
+    print(class_avg)
     
