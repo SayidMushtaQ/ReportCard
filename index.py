@@ -32,6 +32,27 @@ def classAverage(students_marks):
     class_avg = np.sum(students_marks) / students_marks.size;
     return class_avg;
 
+def applyGrades(students_marks):
+    marks_grades = []
+    for marks in students_marks:
+        grade = [];
+        for j in marks:
+            if j >= 90:
+                grade.append('A+')
+            elif j >= 80:
+                grade.append('A')
+            elif j >= 70:
+                grade.append('B')
+            elif j >= 60:
+                grade.append('C')
+            elif j >= 50:
+                grade.append('D')
+            else:
+                 grade.append('F')
+        marks_grades.append(grade)
+    return np.array(marks_grades);
+    
+
 if __name__ == '__main__':
     print('-----------------------')
     print('  --- Report card ---')
@@ -41,4 +62,6 @@ if __name__ == '__main__':
     print(marks_avg)
     class_avg = classAverage(students_marks)
     print(class_avg)
+    marks_grades = applyGrades(students_marks);
+    print(marks_grades)
     
