@@ -15,7 +15,7 @@ def getStudentsData():
         # biology = int(input("Biology: "));
         # physics = int(input("Physics: "));
         # chemistry = int(input("Chemistry: "))
-        st_marks.append([90,66,90,97,90])
+        st_marks.append([90,80,90,97,60])
 
     students_marks = np.array(st_marks);
     students_names = np.array(st_names);
@@ -54,6 +54,11 @@ def applyGrades(students_marks):
     
 def getGradeDistribution(students_marks):
     print(students_marks)
+    above_90 = np.count_nonzero(students_marks >= 90);
+    between_89_80 = np.count_nonzero((students_marks <= 89) & (students_marks >= 80));
+    between_79_70 = np.count_nonzero((students_marks <= 79) & (students_marks >= 70));
+    between_69_60 = np.count_nonzero((students_marks <= 69) & (students_marks >= 60));
+    return np.array([above_90,between_89_80,between_79_70,between_69_60])
 
 if __name__ == '__main__':
     print('-----------------------')
@@ -66,5 +71,6 @@ if __name__ == '__main__':
     print(class_avg)
     marks_grades = applyGrades(students_marks);
     print(marks_grades)
-    getGradeDistribution(students_marks)
+    marks_deistribut = getGradeDistribution(students_marks)
+    print(marks_deistribut)
     
