@@ -68,7 +68,7 @@ def getTopperStudent(students_marks):
 if __name__ == '__main__':
     studentsLists = {};
     print('-----------------------')
-    print('  --- Report card ---')
+    print('  --- Generate Report Card ---')
     print('-----------------------')
     students_names,students_marks= getStudentsData();  
     marks_avg  = averageGrade(students_marks);
