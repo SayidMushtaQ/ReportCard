@@ -100,4 +100,4 @@ if __name__ == '__main__':
     with open('studentList.json','w') as file:
         json.dump(studentReport,file,indent=4);
 
-    print("Data has been written to studentList.json 😊🚀")
+    print("Data has been written to 'studentList.json' 😊🚀")
