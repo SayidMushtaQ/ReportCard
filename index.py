@@ -2,20 +2,20 @@ import numpy as np
 
 
 def getStudentsData():
-    num_student = 2  #int(input("[+] Enter the number of students to input: "));
+    num_student = int(input("[+] Enter the number of students to input: "));
     st_marks = [];
     st_names = [];
     for i in range(num_student):
-        # name = input("Enter a student name: ");
-        st_names.append(f'moumi {i}');
+        name = input("Enter a student name: ");
+        st_names.append(name);
         print(f"Enter moumi each sub marks: ")
-        # bengali = int(input("Bengali: "));
-        # english = int(input("English: "));
-        # math = int(input("Math: "));
-        # biology = int(input("Biology: "));
-        # physics = int(input("Physics: "));
-        # chemistry = int(input("Chemistry: "))
-        st_marks.append([90,80,90,97,60])
+        bengali = int(input("Bengali: "));
+        english = int(input("English: "));
+        math = int(input("Math: "));
+        biology = int(input("Biology: "));
+        physics = int(input("Physics: "));
+        chemistry = int(input("Chemistry: "))
+        st_marks.append([bengali,english,math,biology,physics,chemistry])
 
     students_marks = np.array(st_marks);
     students_names = np.array(st_names);
@@ -25,12 +25,12 @@ def averageGrade(students_marks):
     marks_avg = [];
     for i in students_marks:
         average = np.mean(i);
-        marks_avg.append(float(average))
+        marks_avg.append(float(round(average,2)))
     return marks_avg;
 
 def classAverage(students_marks):
     class_avg = np.sum(students_marks) / students_marks.size;
-    return class_avg;
+    return round(class_avg,2);
 
 def applyGrades(students_marks):
     marks_grades = []
@@ -53,7 +53,6 @@ def applyGrades(students_marks):
     return np.array(marks_grades);
     
 def getGradeDistribution(students_marks):
-    print(students_marks)
     above_90 = np.count_nonzero(students_marks >= 90);
     between_89_80 = np.count_nonzero((students_marks <= 89) & (students_marks >= 80));
     between_79_70 = np.count_nonzero((students_marks <= 79) & (students_marks >= 70));
@@ -61,24 +60,42 @@ def getGradeDistribution(students_marks):
     return np.array([above_90,between_89_80,between_79_70,between_69_60])
 
 def getTopperStudent(students_marks):
-    print(students_marks);
     marks_sum = np.sum(students_marks,axis=1) # sum of each row
-    topper = np.max(marks_sum);
-    return topper;
+    top_marks = np.max(marks_sum);
+    topper_index = np.where(marks_sum==top_marks);
+    return topper_index[0];
 
 if __name__ == '__main__':
+    studentsLists = {};
     print('-----------------------')
     print('  --- Report card ---')
     print('-----------------------')
     students_names,students_marks= getStudentsData();  
     marks_avg  = averageGrade(students_marks);
-    print(marks_avg)
     class_avg = classAverage(students_marks)
-    print(class_avg)
     marks_grades = applyGrades(students_marks);
-    print(marks_grades)
-    marks_deistribut = getGradeDistribution(students_marks)
-    print(marks_deistribut)
-    topper = getTopperStudent(students_marks)
-    print(topper)
-    
+    marks_deistribut = getGradeDistribution(students_marks);
+    topper_index = getTopperStudent(students_marks);
+    for i in range(len(students_marks)):
+        studentsLists.update({
+            "classAvg":class_avg,
+            "classTopers":{
+                "ids":list(map(lambda i: i,topper_index)),
+                "names":list(map(lambda i: students_names[i],topper_index))
+            },
+            "marksDistribute":{
+                "above_90":marks_deistribut[0],
+                "between_89_80":marks_deistribut[1],
+                "between_79_70":marks_deistribut[2],
+                "between_69_60":marks_deistribut[3],
+            },
+            f"student {i+1}":{
+                "id":i,
+                "name":students_names[i],
+                "marks":students_marks[i],
+                "marks_avg":marks_avg[i],
+                "marks_grades":marks_grades[i],
+            }
+        })
+
+    print(studentsLists)
