@@ -1,5 +1,5 @@
 import numpy as np
-
+import json
 
 def getStudentsData():
     num_student = int(input("[+] Enter the number of students to input: "));
@@ -66,7 +66,7 @@ def getTopperStudent(students_marks):
     return topper_index[0];
 
 if __name__ == '__main__':
-    studentsLists = {};
+    studentReport= {};
     print('-----------------------')
     print('  --- Generate Report Card ---')
     print('-----------------------')
@@ -77,25 +77,27 @@ if __name__ == '__main__':
     marks_deistribut = getGradeDistribution(students_marks);
     topper_index = getTopperStudent(students_marks);
     for i in range(len(students_marks)):
-        studentsLists.update({
-            "classAvg":class_avg,
+        studentReport.update({
+            "classAvg":float(class_avg),
             "classTopers":{
-                "ids":list(map(lambda i: i,topper_index)),
-                "names":list(map(lambda i: students_names[i],topper_index))
+                "ids":list(map(lambda i: int(i),topper_index)),
+                "names":list(map(lambda i: str(students_names[i]),topper_index))
             },
             "marksDistribute":{
-                "above_90":marks_deistribut[0],
-                "between_89_80":marks_deistribut[1],
-                "between_79_70":marks_deistribut[2],
-                "between_69_60":marks_deistribut[3],
+                "above_90":marks_deistribut[0].tolist(),
+                "between_89_80":marks_deistribut[1].tolist(),
+                "between_79_70":marks_deistribut[2].tolist(),
+                "between_69_60":marks_deistribut[3].tolist(),
             },
             f"student {i+1}":{
                 "id":i,
-                "name":students_names[i],
-                "marks":students_marks[i],
-                "marks_avg":marks_avg[i],
-                "marks_grades":marks_grades[i],
+                "name":str(students_names[i]),
+                "marks":students_marks[i].tolist(),
+                "marks_avg":float(marks_avg[i]),
+                "marks_grades":marks_grades[i].tolist(),
             }
         })
+    with open('studentList.json','w') as file:
+        json.dump(studentReport,file,indent=4);
 
-    print(studentsLists)
+    print("Data has been written to studentList.json 😊🚀")

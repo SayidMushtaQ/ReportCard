@@ -1,0 +1,80 @@
+{
+    "classAvg": 88.78,
+    "classTopers": {
+        "ids": [
+            2
+        ],
+        "names": [
+            "tannu"
+        ]
+    },
+    "marksDistribute": {
+        "above_90": 9,
+        "between_89_80": 6,
+        "between_79_70": 3,
+        "between_69_60": 0
+    },
+    "student 1": {
+        "id": 0,
+        "name": "aman",
+        "marks": [
+            89,
+            70,
+            90,
+            98,
+            88,
+            79
+        ],
+        "marks_avg": 85.67,
+        "marks_grades": [
+            "A",
+            "B",
+            "A+",
+            "A+",
+            "A",
+            "B"
+        ]
+    },
+    "student 2": {
+        "id": 1,
+        "name": "kalu",
+        "marks": [
+            90,
+            87,
+            99,
+            80,
+            98,
+            70
+        ],
+        "marks_avg": 87.33,
+        "marks_grades": [
+            "A+",
+            "A",
+            "A+",
+            "A",
+            "A+",
+            "B"
+        ]
+    },
+    "student 3": {
+        "id": 2,
+        "name": "tannu",
+        "marks": [
+            90,
+            89,
+            97,
+            88,
+            99,
+            97
+        ],
+        "marks_avg": 93.33,
+        "marks_grades": [
+            "A+",
+            "A",
+            "A+",
+            "A",
+            "A+",
+            "A+"
+        ]
+    }
+}
