@@ -60,6 +60,12 @@ def getGradeDistribution(students_marks):
     between_69_60 = np.count_nonzero((students_marks <= 69) & (students_marks >= 60));
     return np.array([above_90,between_89_80,between_79_70,between_69_60])
 
+def getTopperStudent(students_marks):
+    print(students_marks);
+    marks_sum = np.sum(students_marks,axis=1) # sum of each row
+    topper = np.max(marks_sum);
+    return topper;
+
 if __name__ == '__main__':
     print('-----------------------')
     print('  --- Report card ---')
@@ -73,4 +79,6 @@ if __name__ == '__main__':
     print(marks_grades)
     marks_deistribut = getGradeDistribution(students_marks)
     print(marks_deistribut)
+    topper = getTopperStudent(students_marks)
+    print(topper)
     
